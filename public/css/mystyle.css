@@ -1,0 +1,27 @@
+/* 
+    Document   : mystyle
+    Created on : 19.3.2014, 23:20:42
+    Author     : dunglexuan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#intro {
+    height: 100%;
+}
+
+#main-nav {
+    background-color: transparent!important;
+    box-shadow: none!important;
+}
+
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
+    color: white!important;
+    font-weight: bold;
+}
+
+.hot-line {
+    color: green;
+    font-weight: bold;
+}
+

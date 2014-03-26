@@ -8,12 +8,47 @@ var express = require('express')
         , mongoose = require('mongoose')
         , bcrypt = require('bcrypt')
         , SALT_WORK_FACTOR = 10
-        , db = require("./config/user.js")
-        , pass = require("./config/pass.js");
+        , pass = require("./config/pass.js")
+        , pg = require("pg")
+        , dbapi = require("./api/dbapi.js")
+        , fileapi = require("./api/fileapi.js");
 
+//var conString = "postgres://dunglexuan:@localhost:5432/muabancz";
+        
+var conString = process.env.DATABASE_URL;
+
+
+pg.connect(conString, function(err, client, done) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+        bcrypt.hash("erikle13101989", salt, function(err, hash) {
+            client.query('SELECT * FROM Users WHERE phone = 725637243;',
+                    function(err, result) {
+                        done();
+                        if (err)
+                            return console.error(err);
+                        else {
+                            if (result.rows.length < 1) {
+                                client.query("INSERT INTO Users (phone, name, surname, password, address, psc, role, city, state) \n\
+                                     VALUES (725637243, 'Dung', 'Le Xuan','" + hash + "','Náchodská 640/101',40801,'admin','Praha 9',1);",
+                                        function(err, resultinsert) {
+                                            if (err)
+                                                return console.error(err);
+                                            else
+                                                client.end();
+                                        });
+                            }
+                        }
+                    });
+        });
+    });
+});
+
+
+dbapi.createDB();
 
 
 var app = express();
+
 
 // configure Express
 app.configure(function() {
@@ -32,64 +67,59 @@ app.configure(function() {
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
 });
-
-
+//==================================================================
+// routes
 app.get('/', function(req, res) {
-    res.render('index', {user: req.user});
+    res.render('index', {title: 'Express'});
 });
-
-app.get('/account', pass.ensureAuthenticated, function(req, res) {
-    res.render('account', {user: req.user});
+// route to log in
+app.post('/login', passport.authenticate('local'), function(req, res) {
+    res.send(req.user);
 });
-
-app.get('/login', function(req, res) {
-    res.render('login', {user: req.user, message: req.session.messages});
+// route to test if the user is logged in or not
+app.get('/loggedin', function(req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
 });
-
-// POST /login
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
-//
-//   curl -v -d "username=bob&password=secret" http://127.0.0.1:3000/login
-//   
-/***** This version has a problem with flash messages
- app.post('/login', 
- passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
- function(req, res) {
- res.redirect('/');
- });
- */
-
-// POST /login
-//   This is an alternative implementation that uses a custom callback to
-//   acheive the same functionality.
-app.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-        if (err) {
-            return next(err)
-        }
-        if (!user) {
-            req.session.messages = [info.message];
-            return res.redirect('/login')
-        }
-        req.logIn(user, function(err) {
-            if (err) {
-                return next(err);
-            }
-            return res.redirect('/');
-        });
-    })(req, res, next);
-});
-
 app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
+    req.logOut();
+    res.send(200);
 });
+// routes for users
+app.post('/create-seller', dbapi.createSeller);
+app.post('/check-phone-number', dbapi.checkPhoneNumber);
 
-app.listen(3000, function() {
-    console.log('Express server listening on port 3000');
+// routes for goods
+app.post('/create-good', pass.ensureAuthenticated, dbapi.createGood);
+app.post('/create-good-anonym', dbapi.createGoodAnonym);
+app.get('/get-goods-by-user', pass.ensureAuthenticated, dbapi.getGoodsByUser);
+app.post('/activate-good', pass.ensureAuthenticated, dbapi.activateGood);
+app.post('/deactivate-good', pass.ensureAuthenticated, dbapi.deactivateGood);
+app.get('/get-good-detail/:id', pass.ensureAuthenticated, dbapi.goodDetail);
+app.get('/get-good-detail-public/:id', dbapi.goodDetailPublic);
+app.get('/get-good-images/:id', dbapi.goodImages);
+app.get('/get-goods/:page', dbapi.getGoods);
+app.get('/get-row-count', dbapi.getRowCount);
+
+// routes for file
+app.post('/add-image', fileapi.uploadImage);
+
+// routes for categories
+app.post('/create-category', pass.ensureAdmin, dbapi.createCategory);
+app.post('/create-subcategory', pass.ensureAdmin, dbapi.createSubCategory);
+
+app.get('/get-categories', dbapi.getCategories);
+app.get('/get-subcategories/:id', dbapi.getSubcat);
+
+app.get('/get-category-detail/:id', pass.ensureAdmin, dbapi.getCatDetail);
+
+app.post('/deactivate-category', pass.ensureAdmin, dbapi.deactivateCat);
+app.post('/activate-category', pass.ensureAdmin, dbapi.activateCat);
+app.post('/deactivate-subcategory', pass.ensureAdmin, dbapi.deactivateSubCat);
+app.post('/activate-subcategory', pass.ensureAdmin, dbapi.activateSubCat);
+
+
+app.listen(5000, function() {
+    console.log('Express server listening on port 5000');
 });
 
 

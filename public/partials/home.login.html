@@ -1,0 +1,24 @@
+<div class="col-lg-6 col-lg-offset-3">
+    <div class="jumbotron">
+        <h2>{{'Login' | translate}}</h2>
+        <br/>
+        <p class="help-block red-text">{{errorMessage | translate}}</p>
+        <form name="loginForm" novalidate>
+            <div class="form-group">
+                <label for="username"><h3><i class="fa fa-user"></i>&nbsp;{{'Phone' | translate}}</h3></label>
+                <input type="number" id="username" ng-model="phone" class="form-control" ng-min="9" ng-max="9" required >
+            </div>
+            <div class="form-group">
+                <label for="password"><h3><i class="fa fa-key"></i>&nbsp;{{'Password' | translate}}</h3></label>
+                <input type="password" id="password" ng-model="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" ng-click="login()" ng-disabled="loginForm.$invalid" class="btn btn-lg yellow-btn"><h3><i class="fa fa-check-circle"></i>&nbsp;{{'Signin' | translate}}</h3></button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div class="col-lg-3">
+
+</div>

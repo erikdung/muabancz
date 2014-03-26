@@ -1,0 +1,133 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div ng-file-drop>
+                <div class="section-header">
+                    <h2 class="dark-text">{{'AddOffer' | translate}}</h2>
+                </div>
+                <form name="addOfferForm" novalidate>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-class="{'has-error': addOfferForm.phoneForm.$invalid, 'has-success': addOfferForm.phoneForm.$valid}">
+                                <label for="phone">{{'Phone' | translate}}</label>
+                                <input type="number" ng-minLength="9" ng-maxLength="9" name="phoneForm" ng-model="phone" id="phone" required class="form-control">
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': addOfferForm.titleForm.$invalid, 'has-success': addOfferForm.titleForm.$valid}">
+                                <label for="title">{{'GoodTitle' | translate}}</label>
+                                <input type="text" name="titleForm" ng-model="title" required id="title" class="form-control">
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':addOfferForm.description.$invalid, 'has-success': addOfferForm.description.$valid}">
+                                <label for="description">{{'GoodDescription' | translate}}</label>
+                                <textarea name="description" ng-model="description" rows="6" id="description" required class="form-control"></textarea>
+                            </div>
+                            <div class="form-group"  ng-class="{'has-error':addOfferForm.price.$invalid, 'has-success': addOfferForm.price.$valid}">
+                                <label for="price">{{'GoodPrice' | translate}}</label>
+                                <input type="number" name="price" ng-model="price" id="price" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-class="{'has-error':addOfferForm.count.$invalid, 'has-success': addOfferForm.count.$valid}">
+                                <label for="count">{{'GoodCount' | translate}}</label>
+                                <input type="number" name="count" ng-model="count" required id="count" ng-init="count = 1" class="form-control">
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':addOfferForm.category.$invalid, 'has-success': addOfferForm.category.$valid}">
+                                <label for="category">
+                                    Kategorie
+                                </label>
+                                <select id="category" name="category" ng-change="getSubCats(category)" id="category" ng-model="category" required class="form-control">
+                                    <option ng-repeat="cat in cats" value="{{cat.id}}">{{cat.title}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="subcategory">
+                                    Podkategorie
+                                </label>
+                                <select id="subcategory" name="subcategory" ng-disabled="subcats.length < 1" id="subcategory" ng-model="subcategory" class="form-control">
+                                    <option ng-repeat="subcat in subcats" value="{{subcat.id}}">{{subcat.title}}</option>
+                                </select>
+                            </div>
+                            <div class="drop-box" ng-file-over>
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">{{'FileInput' | translate}}</label>
+                                        <input  ng-file-select="onFileSelect($files)" type="file" id="exampleInputFile" multiple name="files" ng-model="files">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" ng-show="uploader.queue.length > 0">
+                            <h3 class="red-text">{{'imageNum' | translate}}: {{ uploader.queue.length }}</h3>
+
+                            <table class="table table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th width="30%">{{'Title' | translate}}</th>
+                                        <th ng-show="uploader.isHTML5">{{'Size' | translate}}</th>
+                                        <th ng-show="uploader.isHTML5">{{'Progress' | translate}}</th>
+                                        <th>{{'Status' | translate}}</th>
+                                        <th>
+                                            <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                                                <span class="fa fa-trash-o"></span>&nbsp;{{'removeAll' | translate}}
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in uploader.queue">
+                                        <td>
+                                            <strong>{{ item.file.name | truncate:15}}</strong>
+                                            <!-- Image preview -->
+                                            <!--auto height-->
+                                            <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                                            <!--auto width-->
+                                            <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 100 }"></div>
+                                            <!--fixed width and height -->
+                                            <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                                        </td>
+                                        <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                        <td ng-show="uploader.isHTML5">
+                                            <div class="progress" style="margin-bottom: 0;">
+                                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                                <span ng-show="item.isUploading">{{item.progress}}&nbsp;%</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span ng-show="item.isSuccess"><i class="fa fa-check-circle"></i></span>
+                                            <span ng-show="item.isCancel"><i class="fa fa-bar-chart-o"></i></span>
+                                            <span ng-show="item.isError"><i class="fa fa-times"></i></span>
+                                        </td>
+                                        <td nowrap>
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                <span class="fa fa-trash-o"></span>&nbsp;{{'Remove' | translate}}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div  ng-show="uploader.isUploading || uploader.isSuccess">
+                                <p>
+                                    {{'Queue progress' | translate}}:
+                                <div class="progress" style="">
+                                    <div class="progress-bar" ng-show="uploader.isUploading" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                </div>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <button type="submit" ng-click="add()" ng-disabled="addOfferForm.$invalid" class="btn btn-primary custom-button red-btn"><h3><i class="fa fa-plus-circle"></i>&nbsp;{{'Add' | translate}}</h3></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

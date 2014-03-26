@@ -1,0 +1,99 @@
+<!-- / END TOP BAR -->
+<section class="focus" id="focus">
+    <!-- TOP BAR -->
+    <div class="navbar bs-docs-nav">
+        <div class="container">
+            <div class="navbar-header responsive-logo">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="./" ui-sref="admin" class="navbar-brand">
+                    <h2>MUABAN.CZ</h2>
+                </a>
+            </div>
+            <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
+                <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
+                    <li><a href="" ui-sref="admin">{{'administration' | translate}}</a></li>
+                    <li><a href="" ng-click="logout()">{{'logout' | translate}}</a></li>
+                    <li><a href="" ng-click="changeLang('vn')">Tiếng Việt</a></li>
+                    <li><a href="" ng-click="changeLang('cz')">Česky</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <!-- / END SECTION HEADER -->
+
+        <!-- 4 FOCUS BOXES -->
+        <div class="row" ui-view>
+            <div class="section-header">
+
+                <!-- SECTION TITLE -->
+                <h2 class="dark-text">{{'administration' | translate}}</h2>
+
+                <!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+                <h6>
+                    {{'WelcomeMess' | translate}}
+                </h6>
+            </div>
+
+            <!-- FIRST FOCUS BOXES -->
+            <div class="col-lg-4 col-sm-4 focus-box red" data-scrollreveal="enter left after 0.15s over 1s">
+                <a href="" ui-sref="admin.add">
+                    <div class="service-icon">
+                        <i class="pixeden pd-icon-notes"></i> <!-- FOCUS ICON-->
+                    </div>
+                </a>
+                <h5 class="red-border-bottom">{{'NewOffer' | translate}}</h5> <!-- FOCUS HEADING -->
+                <p> <!-- FOCUS DESCRIPTION -->
+                    {{'MakeOfferMess' | translate}}
+                </p>
+            </div>
+            <!-- / END FIRST FOCUS BOX. Other boxes has same format -->
+
+            <div class="col-lg-4 col-sm-4 focus-box green" data-scrollreveal="enter left after 0.15s over 1s">
+                <a href="" ui-sref="admin.list">
+                    <div class="service-icon">
+                        <span class="pixeden pd-icon-tablet"></span>
+                    </div>
+                </a>
+                <h5 class="green-border-bottom">{{'Offers' | translate}}</h5>
+                <p>
+                    {{'ListOfOffers' | translate}}
+                </p>
+            </div>
+
+            <div class="col-lg-4 col-sm-4 focus-box blue" data-scrollreveal="enter right after 0.15s over 1s">
+                <a href="">
+                    <div class="service-icon">
+                        <i class="pixeden pd-icon-statistics"></i>
+                    </div>
+                </a>
+                <h5 class="blue-border-bottom">{{'Orders' | translate}}</h5>
+                <p>
+                    {{'Statistics' | translate}}
+                </p>
+            </div>
+        </div>
+        <!-- / END 4 FOCUS BOXES -->
+
+        <!-- OTHER FOCUSES -->
+        <div class="other-focuses">
+            <h5><span class="section-footer-title">{{'more' | translate}}</span></h5>
+        </div>
+
+        <!-- OTHER FOCUS LIST -->
+        <div class="other-focus-list">
+            <ul data-scrollreveal="enter bottom after 0s over 1s">
+                <li><a href=""><i class="icon-fontawesome-webfont-8"></i>{{'promoteOffer' | translate}}</a></li>
+                <li><a href=""><i class="icon-fontawesome-webfont-267"></i>{{'ads' | translate}}</a></li>
+                <li><a href=""><i class="icon-fontawesome-webfont-75"></i>{{'sellingPart' | translate}}</a></li>
+                <li><a href=""><i class="icon-fontawesome-webfont-358"></i>{{'premiumAccount' | translate}}</a></li>
+                <li><a href=""><i class="icon-fontawesome-webfont-102"></i>{{'help' | translate}}</a></li>
+            </ul>
+        </div> <!-- / END OTHER FOCUS LIST -->
+    </div>
+</section>

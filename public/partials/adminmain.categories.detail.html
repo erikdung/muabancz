@@ -1,0 +1,27 @@
+<div class="section-header">
+    <h3>{{data.title}}</h3>
+</div>
+<p ng-show="data.description">{{data.description}}</p>
+<hr>
+<div class="section-header">
+    <h4>Podkategorie</h4>
+</div>
+<table class="table table-stripped table-hover">
+    <thead>
+        <tr>
+            <th>Název</th>
+            <th>Stav</th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="cat in subcats">
+            <td>{{cat.title}}</td>
+            <td><span ng-show="cat.state === 1">Aktivní</span><span ng-show="cat.state === 0">Neaktivní</span></td>
+            <td>
+                <button ng-show="cat.state === 1" class="btn btn-danger" ng-click="deactivateCat(cat.id, $index)"><i class="fa fa-times"></i></button>
+                <button ng-show="cat.state === 0" class="btn btn-success" ng-click="activateCat(cat.id, $index)"><i class="fa fa-check"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -123,7 +123,6 @@ h6 {
 
 .buttons {
 	text-align: center;
-	margin-top: 40%;
 }
 .button {
 	display: inline-block !important;
@@ -318,31 +317,18 @@ h6 {
 	border-radius: 4px;
 	background: rgba(255,255,255, 0.95);
 }
- textarea:hover, 
-input:hover, 
-textarea:active, 
-input:active, 
-textarea:focus, 
-input:focus {
-    outline: 1 !important;
-    outline-color: #e96656 !important;
-    -webkit-appearance:none;
-        border:none !important;
-  -webkit-box-shadow:none !important;
-  box-shadow:none !important;
-        }
 
 /*---------------------------------------
  **   SECTION HEADERS                -----
 -----------------------------------------*/
 
 /*** SECTION HEADERS ***/
-.focus,.works,.about-us,.features,.packages,.products,.testimonial,.contact-us {
+.works,.about-us,.features,.packages,.products,.testimonial,.contact-us {
 	padding-top: 100px;
 }
 .section-header {
 	text-align: center;
-	padding-bottom: 75px;
+	padding-bottom: 40px;
 }
 .section-header h2 {
 	padding-bottom: 10px;
@@ -476,7 +462,9 @@ input:focus {
 
 /* Short Messages */
 .bottom-message-section {
-	position: relative;
+	position: absolute;
+        bottom: 5%;
+        right: 10%;
 }
 .short-text {
 	margin: auto;
@@ -1141,8 +1129,8 @@ width: -webkit-calc(100% / 2);
 
 /*---ITEM STYLE ---*/
 .item {
-	width: 100%;
-	height: 260px;
+	width: auto;
+	height: 200px;
 	display: block;
 	-webkit-background-size: 100%;
 	background-size: 100%;

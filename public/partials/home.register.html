@@ -1,0 +1,113 @@
+<div class="jumbotron" id="register-box">
+    <h2 class="red-text"><i class="fa fa-user"></i>&nbsp;{{'Registration' | translate}}</h2>
+    <br/>
+    <form class="form-horizontal" name="registerForm" novalidate>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{'has-error': registerForm.phone.$invalid, 'has-success': registerForm.phone.$valid, 'has-warning': phoneUsed}">
+                <label for="phone" class="col-sm-3 control-label">
+                    <h5>{{'Phone' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="number" id="phone" ng-change="checkPhoneNumber()" ng-model="phone" name="phone" ng-minlength="9" ng-maxlength="9" class="form-control" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.phone.$valid && !phoneUsed && !checkingPhone"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="(registerForm.phone.$invalid && !registerForm.phone.$error.required && !checkingPhone) || phoneUsed"><i class="fa fa-times"></i></span>
+                </div>
+                <label class="control-label" ng-show="phoneUsed && registerForm.phone.$valid"><small>{{'PhoneNumberUsed'| translate}}</small></label>
+            </div>
+            <div class="form-group" ng-class="{'has-error': registerForm.name.$invalid, 'has-success': registerForm.name.$valid}">
+                <label for="name" class="col-sm-3 control-label">
+                    <h5>{{'Name' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" id="name" ng-model="name" name="name" class="form-control" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.name.$valid"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="registerForm.name.$invalid && !registerForm.name.$error.required"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': registerForm.surname.$invalid, 'has-success': registerForm.surname.$valid}">
+                <label for="surname" class="col-sm-3 control-label">
+                    <h5>{{'Surname' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" id="surname" ng-model="surname" name="surname" class="form-control" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.surname.$valid"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="registerForm.surname.$invalid && !registerForm.surname.$error.required"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': registerForm.address.$invalid, 'has-success': registerForm.address.$valid}">
+                <label for="address" class="col-sm-3 control-label">
+                    <h5>{{'Address' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" id="address" name="address" ng-model="address" class="form-control" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.address.$valid"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="registerForm.address.$invalid && !registerForm.address.$error.required"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{'has-error': registerForm.psc.$invalid, 'has-success': registerForm.psc.$valid}">
+                <label for="psc" class="col-sm-3 control-label">
+                    <h5>{{'psc' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="number" id="psc" ng-model="psc" name="psc" class="form-control" ng-minlength="5" ng-maxlength="5" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.psc.$valid"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="registerForm.psc.$invalid && !registerForm.psc.$error.required"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': registerForm.city.$invalid, 'has-success': registerForm.city.$valid}">
+                <label for="city" class="col-sm-3 control-label">
+                    <h5>{{'City' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" id="city" ng-model="city" name="city" class="form-control" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.city.$valid"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="registerForm.city.$invalid && !registerForm.city.$error.required"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': registerForm.password.$invalid, 'has-success': registerForm.password.$valid}">
+                <label for="password" class="col-sm-3 control-label">
+                    <h5>{{'Password' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="password" id="password" name="password" ng-model="password" class="form-control" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.password.$valid"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="registerForm.password.$invalid && !registerForm.password.$error.required"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': (registerForm.passver.$invalid || (password !== passVer)), 'has-success': registerForm.passver.$valid && (password === passVer)}">
+                <label for="passVer" class="col-sm-3 control-label">
+                    <h5>{{'PassVer' | translate}}</h5>
+                </label>
+                <div class="col-sm-8">
+                    <input type="password" id="passVer" name="passver" ng-model="passVer" class="form-control" required >
+                </div>
+                <div class="col-sm-1">
+                    <span class="green-text" ng-show="registerForm.passver.$valid && (password === passVer)"><i class="fa fa-check"></i></span>
+                    <span class="red-text" ng-show="(registerForm.passver.$invalid || (password !== passVer)) && !registerForm.passver.$error.required"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" ng-click="register()" id="submit" data-loading-text="<i class='fa fa-spin fa-spinner'></i>" ng-disabled="registerForm.$invalid || (password !== passVer) || phoneUsed" class="btn btn-lg yellow-btn">
+            <h3><i class="fa fa-check-circle"></i>&nbsp;{{'Register' | translate}}</h3>
+        </button>
+    </form>
+    <h3 class="red-text pull-right"><i class="fa fa-phone"></i>{{'HOTLINE' | translate}}: 725637243</h3>
+</div>

@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="section-header">
+                <h3>Přidávání kategorie</h3>
+            </div>
+            <form name="catForm" novalidate="">
+                <div class="form-group">
+                    <label for="catTitle">
+                        Název kategorie
+                    </label>
+                    <input type="text" id="catTitle" name="catTitle" ng-model="catTitle" required="" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="catDesc">
+                        Popis kategorie
+                    </label>
+                    <textarea id="catDesc" name="catDesc" ng-model="catDesc" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" ng-click="addCat()" class="btn custom-button yellow-btn" ng-disabled="catForm.$invalid"value="Vytvořit">
+                </div>
+            </form>
+            <hr/>
+            <div class="section-header">
+                <h3>Přidávání podkategorie</h3>
+            </div>
+            <form name="subcatForm" novalidate="">
+                <div class="form-group">
+                    <label for="subcatTitle">
+                        Název podkategorie
+                    </label>
+                    <input type="text" id="subcatTitle" name="subcatTitle" ng-model="subcatTitle" required="" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="subcatCategory">
+                        Kategorie
+                    </label>
+                    <select id="subcatCategory" name="subcatCategory" ng-model="subcatCategory" required="" class="form-control">
+                        <option ng-repeat="cat in cats" value="{{cat.id}}">{{cat.title}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subcatDesc">
+                        Popis kategorie
+                    </label>
+                    <textarea id="subcatDesc" name="subcatDesc" ng-model="subcatDesc" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" ng-click="addSubcat()" ng-disabled="subcatForm.$invalid" class="btn btn-primary custom-button green-btn" value="Vytvořit">
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6" ui-view>
+            <h1 class="red-text section-header" ng-show="loading"><i class="fa fa-spin fa-refresh"></i></h1>
+            <h3 class="red-text section-header" ng-show="errorMess">{{errorMess}}</h3>
+            <div class="section-header">
+                <h3>Seznam kategorie</h3>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Název</th>
+                        <th>Stav</th>
+                        <th>Akce</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cat in cats">
+                        <td><a ui-sref="adminmain.categories.detail({id: cat.id})">{{cat.title}}</a></td>
+                        <td><span ng-show="cat.state === 1">Aktivní</span><span ng-show="cat.state === 0">Neaktivní</span></td>
+                        <td>
+                            <button ng-show="cat.state === 1" class="btn btn-danger" ng-click="deactivateCat(cat.id, $index)"><i class="fa fa-times"></i></button>
+                            <button ng-show="cat.state === 0" class="btn btn-success" ng-click="activateCat(cat.id, $index)"><i class="fa fa-check"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

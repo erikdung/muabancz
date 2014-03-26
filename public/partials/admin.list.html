@@ -1,0 +1,33 @@
+<div class="section-header">
+    <h2>{{'ProductList' | translate}}</h2>
+</div>
+<h3 ng-show="goods.length < 1">{{'NoProduct' | translate}}</h3>
+<h4>{{errMess | translate}}</h4> 
+<table ng-show="goods.length > 1" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>{{'Title' | translate}}</th>
+            <th>{{'InsertDate' | translate}}</th>
+            <th>{{'Price' | translate}}</th>
+            <th>{{'Count' | translate}}</th>
+            <th>{{'state' | translate}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="good in goods">
+            <td><a href ui-sref="admin.gooddetail({id: good.id})">{{good.title}}</a></td>
+            <td></td>
+            <td>{{good.price}}</td>
+            <td>{{good.count}}</td>
+            <td>
+                <span ng-show="good.state === 1">{{'Active' | translate}}</span>
+                <span ng-show="good.state === 0">{{'Deactive' | translate}}</span>
+            </td>
+            <td>
+                <button ng-show="good.state === 1" class="btn btn-danger" ng-click="deactivate(good.id, $index)"><span><i class="fa fa-times-circle"></i>&nbsp;{{'Deactivate' | translate}}</span></button>
+                <button ng-show="good.state === 0" class="btn btn-success" ng-click="activate(good.id, $index)"><span><i class="fa fa-check-circle"></i>&nbsp;{{'Activate' | translate}}</span></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

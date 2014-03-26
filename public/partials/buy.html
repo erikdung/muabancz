@@ -1,3 +1,264 @@
-<a href="#" class="btn btn-lg btn-primary custom-button red-btn"><h3>{{'QUICKSELL' | translate}}</h3></a>
-<a href="#" class="btn btn-lg btn-primary custom-button green-btn"><h3>{{'LOGIN' | translate}}</h3></a>
-<a href="#" class="btn btn-lg btn-primary custom-button blue-btn"><h3>{{'REGISTER' | translate}}</h3></a>
+<section data-type="background" data-speed="1" id="products">
+    <div>
+        <div class="container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-search-buy" name="searchInput" ng-model="searchInput" id="searchInput" required placeholder="{{'SearchLabel' | translate}}">
+
+                            <span class="input-group-btn">
+                                <button class="btn custom-button blue-btn input-search-buy btn-input-group" type="button"><i class="fa fa-search"></i>&nbsp;{{'Search'}}</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn custom-button red-btn btn-justified" ng-click="category()"><i ng-hide="categoryOpen" class="fa fa-chevron-down"></i><i ng-show="categoryOpen" class="fa fa-chevron-up"></i>&nbsp;{{'Category' | translate}}</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn custom-button yellow-btn btn-justified" ng-click="filter()"><i ng-hide="filterOpen" class="fa fa-chevron-down"></i><i ng-show="filterOpen" class="fa fa-chevron-up"></i>&nbsp;{{'Filter' | translate}}</button>
+                    </div>
+                </div>
+
+                <div ng-show="filterOpen">
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="catFilter">{{'Category' | translate}}</label>
+
+                                <select id="catFilter" class="form-control" name="catFilter">
+                                    <option>Potraviny</option>
+                                    <option>Drogerie</option>
+                                    <option>Jiné</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="subcatFilter">{{'Subcategory' | translate}}</label>
+
+                                <select id="subcatFilter" class="form-control" name="subcatFilter">
+                                    <option>Potraviny</option>
+                                    <option>Drogerie</option>
+                                    <option>Jiné</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>
+                                <label for="amount">{{'PriceRange' | translate}}</label>
+                                <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+                            </p>
+
+                            <div id="slider-range"></div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn custom-button green-btn">{{'Search' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="categoryOpen">
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href><h3>Potraviny</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href><h3>Reality</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href><h3>Drogerie</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href><h3>Potraviny</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href><h3>Reality</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href><h3>Drogerie</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href><h3>Potraviny</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href><h3>Reality</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href><h3>Drogerie</h3></a>
+                            <p>
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>,
+                                <a href>Nápoje</a>,<a href>Nápoje</a>,<a href>Nápoje</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- / END SECTION HEADER -->
+            <div class="row">
+                <div class="col-lg-9">
+                    <ul class="pagination pagination-lg hidden-xs hidden-sm">
+                        <li><a href="" ui-sref="main.buy({page: 1})">&laquo;</a></li>
+                        <li ng-class="{'active': page === pagi}" ng-repeat="pagi in paginator"><a href="#" ui-sref="main.buy({page: pagi})">{{pagi}}</a></li>
+                        <li><a href="" ui-sref="main.buy({page: last})">&raquo;</a></li>
+                    </ul>
+                    <ul class="pagination pagination hidden-lg hidden-md">
+                        <li><a href="" ui-sref="main.buy({page: 1})">&laquo;</a></li>
+                        <li ng-class="{'active': page === pagi}" ng-repeat="pagi in xspaginator"><a href="#" ui-sref="main.buy({page: pagi})">{{pagi}}</a></li>
+                        <li><a href="" ui-sref="main.buy({page: last})">&raquo;</a></li>
+                    </ul>
+                    <div class="row" ng-repeat="row in goods" data-scrollreveal="enter left after 0s over 1s">
+                        <!-- SINGLE PRODUCT -->
+                        <div class="col-md-4" ng-repeat="good in row">
+                            <div class="item">
+                                <a href="">
+                                    <a ui-sref="main.detail({id: good.id})"><img ng-if="good.ititle" ng-src="{{'uploads/thumbnails/'+good.id+'/'+good.ititle}}" alt="{{good.ititle}}"></a>    
+                                    <!--                                    <img ng-if="!good.ititle" ng-src="{{'images/products/1.jpg'}}" alt="{{good.ititle}}">    -->
+                                    <a ui-sref="main.detail({id: good.id})"><i ng-if="!good.ititle" class="pixeden pd-icon-camera"></i></a>
+                                    <div class="item-content">
+                                        <div class="item-top-content">
+                                            <div class="item-top-content-inner">
+                                                <div class="item-product">
+                                                    <div class="item-top-title">
+                                                        <a ui-sref="main.detail({id: good.id})"><h5 class="blue-text">{{good.gtitle}}</h5></a>
+                                                        <p class="subdescription">
+                                                            {{good.description|truncate:20}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product-price">
+                                                    <span class="price-num green-text">{{good.price}}&nbsp;Kč</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div> <!-- / END FIRST ITEM -->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="feedback-box">
+                        <h3>Reklama</h3>
+                        <br>
+                        <div class="message">
+                            “Called days. Image kind beginning have. Herb set kind herb. Wherein saying third was, every land moveth also bearing hath bring had give god gathered behold open cattle after a, from third male subdue multiply divided void cattle winged. Herb set kind herb. multiply divided void cattle winged. Herb set kind herb.”
+                        </div>
+                        <div class="client">
+                            <div class="quote blue-text">
+                                <i class="icon-fontawesome-webfont-294"></i>
+                            </div>
+                            <div class="client-info">
+                                <a class="client-name" href="">Keith McCarthy</a>
+                                <div class="client-company">
+                                    Manager, XYZ Inc.
+                                </div>
+                            </div>
+                            <div class="client-image hidden-xs">
+                                <img src="images/clients-pic/1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="feedback-box">
+                        <h3>Reklama</h3>
+                        <br>
+                        <div class="message">
+                            “Called days. Image kind beginning have. Herb set kind herb. Wherein saying third was, every land moveth also bearing hath bring had give god gathered behold open cattle after a, from third male subdue multiply divided void cattle winged. Herb set kind herb. multiply divided void cattle winged. Herb set kind herb.”
+                        </div>
+                        <div class="client">
+                            <div class="quote blue-text">
+                                <i class="icon-fontawesome-webfont-294"></i>
+                            </div>
+                            <div class="client-info">
+                                <a class="client-name" href="">Keith McCarthy</a>
+                                <div class="client-company">
+                                    Manager, XYZ Inc.
+                                </div>
+                            </div>
+                            <div class="client-image hidden-xs">
+                                <img src="images/clients-pic/1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PRODUCTS -->
+
+        <ul class="pagination pagination-lg hidden-xs hidden-sm">
+            <li><a href="" ui-sref="main.buy({page: 1})">&laquo;</a></li>
+            <li ng-class="{'active': page === pagi}" ng-repeat="pagi in paginator"><a href="#" ui-sref="main.buy({page: pagi})">{{pagi}}</a></li>
+            <li><a href="" ui-sref="main.buy({page: last})">&raquo;</a></li>
+        </ul>
+
+        <ul class="pagination pagination hidden-lg hidden-md">
+            <li><a href="" ui-sref="main.buy({page: 1})">&laquo;</a></li>
+            <li ng-class="{'active': page === pagi}" ng-repeat="pagi in xspaginator"><a href="#" ui-sref="main.buy({page: pagi})">{{pagi}}</a></li>
+            <li><a href="" ui-sref="main.buy({page: last})">&raquo;</a></li>
+        </ul>
+    </div> <!-- / END PRODUCTS LIST -->
+    <section class="purchase-now">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="white-text">
+                                {{'MakeOfferText' | translate}} </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="white-text"><i class="fa fa-phone"></i>&nbsp;{{'HOTLINE' | translate}}:&nbsp;725 637 243</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="" class="btn btn-primary custom-button red-btn" ui-sref="main.quicksell">{{'MakeOffer' | translate}}</a>
+                </div>
+            </div>
+        </div>
+    </section> <!-- / END PURCHASE NOW SECTION-->

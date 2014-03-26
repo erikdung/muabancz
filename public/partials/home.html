@@ -1,8 +1,7 @@
 <!-- =========================
            HOME SECTION       
         ============================== -->
-<header id="home" class="header">
-
+<div id="home-div-full" class="container-fluid">
     <!-- TOP BAR -->
     <div id="main-nav" class="navbar navbar-inverse bs-docs-nav" role="banner">
         <div class="container">
@@ -14,7 +13,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a ui-sref="home" class="navbar-brand">
-                    <h1>MUABAN.CZ</h1>
+                    <h2>MUABAN.CZ</h2>
                 </a>
             </div>
             <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
@@ -29,29 +28,17 @@
 
     <!-- BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES -->
     <div class="container" id="intro">
+        <div ui-view id="home-group">
 
-
-        <!-- CALL TO ACTION BUTTONS -->
-        <div class="buttons" id="buttons" ui-view>
-            <a href="#" class="btn btn-lg btn-primary custom-button red-btn"><h1>{{'BUY' | translate}}</h1></a>
-            <a ui-sref="home.buy" class="btn btn-lg btn-primary custom-button green-btn" data-l10n-id="sell"><h1>{{'SELL' | translate}}</h1></a>
+            <!-- CALL TO ACTION BUTTONS -->
+            <div class="buttons" id="buttons">
+                <a ui-sref="main.buy" class="btn btn-lg btn-primary custom-button red-btn"><h1>{{'BUY' | translate}}</h1></a>
+                <a ui-sref="home.sell" class="btn btn-lg btn-primary custom-button green-btn" data-l10n-id="sell"><h1>{{'SELL' | translate}}</h1></a>
+            </div>
+            <!-- HEADING -->
+            <h2 class="intro" id="introText">{{'INTROSLOGAN' | translate}}</h2>
+            <h3 class="white-text"><i class="fa fa-phone"></i>&nbsp;{{'Hotline' | translate}}:&nbsp;725 637 243</h3> 
         </div>
-        <!-- HEADING -->
-        <h2 class="intro" id="introText">{{'INTROSLOGAN' | translate}}</h2>
 
-
-        <!-- 3 SHORT MESSAGE ABOUT COMPANY -->
-        <div class="row bottom-message-section">
-            <div class="col-lg-4 col-sm-4">
-            </div>
-            <div class="col-lg-4 col-sm-4">
-            </div>
-            <div class="col-lg-4 col-sm-4">
-                <div class="short-text">
-                    <h3><span><i class="fa fa-phone"></i>&nbsp;{{'Hotline' | translate}}:</span>&nbsp;725 637 243</h3> 
-                </div>
-            </div>
-        </div>
     </div> <!-- / END BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES  -->
-
-</header> <!-- / END HOME SECTION  -->
+</div>

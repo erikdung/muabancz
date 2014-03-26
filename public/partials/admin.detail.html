@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="section-header">
+        <!-- SECTION TITLE -->
+        <h2 class="dark-text">{{'ProductDetail' | translate}}</h2>
+    </div>
+    <!-- HOMEPAGE PORTFOLIO SECTION WILL LOAD CONTENTS FROM HERE -->
+    <div class="single-project">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="row" ng-repeat="row in imagePrev" ng-show="row.length > 0">
+                    <div class="col-xs-4 col-md-4" ng-repeat="thumb in row" ng-if="thumb">
+                        <a href="{{'uploads/fullsize/'+goodID+'/'+thumb.title}}" rel="gallery" title="{{thumb.title}}" class="thumbnail fancybox">
+                            <img ng-src="{{'uploads/thumbnails/'+goodID+'/'+thumb.title}}" alt="{{thumb.title}}">
+                        </a>
+                    </div>
+                </div>
+                <p ng-hide="row.length > 0" class="red-text center">{{'NoImages' | translate}}</p>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <h3 class="dark-text">{{good.title}}</h3>
+                <div class="project-description">
+                    {{good.description}}
+                </div>
+                <div class="project-information">
+                    <ul>
+                        <li><span class="dark-text">{{'Price' | translate}}:&nbsp;</span>&nbsp;{{good.price}}&nbsp;Kč</li>
+                        <li><span class="dark-text">{{'Count' | translate}}:&nbsp;</span>&nbsp;{{good.count}}</li>
+                        <li><span class="dark-text">{{'Category' | translate}}:&nbsp;</span>&nbsp;{{good.category}}</li>
+                        <li><span class="dark-text">{{'Subcategory' | translate}}:&nbsp;</span>&nbsp;<span ng-show="good.subcategory">{{good.subcategory}}</span><span ng-hide="good.subcategory">{{'UnavailableSubCat' | translate}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF SINGLE PROJECT -->
+
+</div>
